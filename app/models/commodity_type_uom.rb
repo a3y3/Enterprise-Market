@@ -1,0 +1,2 @@
+class CommodityTypeUom < ApplicationRecord
+end

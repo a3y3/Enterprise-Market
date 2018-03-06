@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305123817) do
+ActiveRecord::Schema.define(version: 20180306105847) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "commodity_type_descriptions", force: :cascade do |t|
+    t.integer "commodity_type_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "commodity_type_uoms", force: :cascade do |t|
+    t.integer "commodity_type_id"
+    t.text "uom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "commodity_types", force: :cascade do |t|
+    t.text "name"
+    t.integer "available_quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rfqs", force: :cascade do |t|
+    t.integer "commodity_type_id"
+    t.text "description"
+    t.integer "quantity"
+    t.string "uom"
+    t.integer "pincode"
+    t.boolean "pending"
+    t.integer "mobile_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
