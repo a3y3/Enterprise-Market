@@ -50,7 +50,7 @@
                             <div class="flat-wrapper">
                                 <div id="logo" class="logo">
                                     <a href="index.html">
-                                        <img src="images/logo.png" alt="images">
+                                        <%=image_tag "images/logo.png"%>
                                     </a>
                                 </div><!-- /.logo -->
                                 <div class="btn-menu">
@@ -72,12 +72,12 @@
                                                             <ul class="cart_list product_list_widget">      
                                                                 <li class="mini_cart_item">
                                                                     <a href="#" class="remove">x</a>
-                                                                    <a href="#"><img src="images/products/1.jpg" alt="images">Boskke Cube</a>
+                                                                    <a href="#"><%=image_tag "images/products/1.jpg" %>Boskke Cube</a>
                                                                     <p><span class="quantity">1 × <span class="amount">$39.00</span></span></p>
                                                                 </li> 
                                                                 <li class="mini_cart_item">
                                                                     <a href="#" class="remove">x</a>
-                                                                    <a href="#"><img src="images/products/2.jpg" alt="images">Cast Iron Casserole</a>
+                                                                    <a href="#"><%=image_tag "images/products/2.jpg"%>Cast Iron Casserole</a>
                                                                     <p><span class="quantity">1 × <span class="amount">$230.00</span></span></p>
                                                                 </li>    
                                                             </ul>
@@ -148,7 +148,7 @@
                                                                             <article class="hentry">
                                                                                 <div class="entry-cover">
                                                                                     <a href="blog-single.html">
-                                                                                        <img src="images/blog/5.jpg" alt="images">
+                                                                                        <%=image_tag "images/blog/5.jpg" %>
                                                                                     </a>
                                                                                 </div>
                                                                                 <div class="entry-header">
@@ -172,7 +172,7 @@
                                                                             <article class="hentry">
                                                                                 <div class="entry-cover">
                                                                                     <a href="blog-single.html">
-                                                                                        <img src="images/blog/7.jpg" alt="images">
+                                                                                        <%=image_tag "images/blog/7.jpg" %>
                                                                                     </a>
                                                                                 </div>
                                                                                 <div class="entry-header">
@@ -195,7 +195,8 @@
                                                     </div><!-- /.row -->
                                                 </div><!-- /.submenu -->
                                             </li><!-- /.flat-mega-menu -->
-                                            <li><a href="#">Portfolio</a>
+                                            <li>
+                                                <a href="#">Portfolio</a>
                                                 <ul class="submenu">
                                                     <li><a href="portfolio-grid-classic-03-columns.html">Grid Classic Layouts</a>
                                                         <ul class="submenu">
@@ -250,10 +251,8 @@
                 </div><!-- /.header-inner --> 
             </header><!-- /.header -->
         </div>
-
-        
-    <%= yield %>
-    <footer class="footer">
+        <%= yield %>
+        <footer class="footer">
             <div class="footer-widgets">
                 <div class="container">
                     <div class="row">
@@ -349,11 +348,9 @@
                 </div><!-- /.container -->
             </div><!-- /.footer-content -->
         </footer>
-
-        <!-- Go Top -->
         <a class="go-top">            
         </a> 
-        </div>  
+    </div>  
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
