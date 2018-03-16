@@ -29,5 +29,5 @@
 //= require js/jquery.themepunch.revolution.min.js
 //= require js/slider.js
 //= require rails-ujs
-//= require turbolinks
+// require turbolinks
 //= require_tree .
