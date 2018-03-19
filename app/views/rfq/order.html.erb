@@ -1,0 +1,10 @@
+<div class="container">
+	<h2>
+		Get a Quote
+	</h2>
+	<%=form_for :rfqs do |f|%>
+		<%=f.text_field :commodity_type_id, placeholder: "Product Category eg. Coil, Sheet, LLDP etc.*"%>
+		<%=f.text_field :description, placeholder: "Product description"%>
+		<%=f.number_field :quantity, placeholder: "Quantity"%>
+	<%end%>
+</div>
