@@ -1,4 +1,4 @@
 class RfqController < ApplicationController
-	def order
+	def new
 	end
 end
