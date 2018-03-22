@@ -2164,7 +2164,7 @@ a.loadmore:hover {
 /* flat-single-image-autoheight
 -------------------------------------------------------------- */
 .flat-single-image-autoheight {   
-    background-image: url('../images/img-single/bg3.jpg') !important;
+    background-image: image-url('images/img-single/bg3.jpg') !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
