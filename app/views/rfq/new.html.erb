@@ -6,7 +6,20 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
-					<%=f.collection_select :commodity_type_id, @commodities, :id, :name%>
+					<input type="text" id="commodities-search" list= "commodities" autocomplete= "off">
+					<datalist id="commodities">
+					<option value="Value1" data-value="1" class="searchable-option"></option>
+					<option value="Value2" data-value="2" class="searchable-option"></option>
+					<option value="Value3" data-value="3" class="searchable-option"></option>
+					<option value="Value4" data-value="4" class="searchable-option"></option>
+					<option value="Value5" data-value="5" class="searchable-option"></option>
+					<option value="Value6" data-value="6" class="searchable-option"></option>
+					<option value="Value7" data-value="7" class="searchable-option"></option>
+					<option value="Value8" data-value="8" class="searchable-option"></option>
+					<option value="Value9" data-value="9" class="searchable-option"></option>
+					<option value="Value10" data-value="10" class="searchable-option"></option>
+					</datalist>
+					<%=f.hidden_field :commodity_type_id, id:"commodity_type_id", autocomplete: "off"%>
 				</div>
 				<div class="form-group">
 					<%=f.text_field :description, placeholder: "Product description", class: "form-control"%>
@@ -37,7 +50,7 @@
 					</div>
 					<div class="col-xs-6 col-sm-6">
 						<div class="form-group">
-							<button class="btn btn-primary ">Post requirement</button>
+							<button class="btn btn-primary" type="submit" id="btn-post-rfq">Post requirement</button>
 						</div>
 					</div>
 				</div>
