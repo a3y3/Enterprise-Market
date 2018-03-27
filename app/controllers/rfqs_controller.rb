@@ -1,13 +1,13 @@
-class RfqController < ApplicationController
+class RfqsController < ApplicationController
 	def new
 		@commodities = CommodityType.all
 	end
 	def create
 		rfq = Rfq.new(rfq_params)
-		if rfq.save!
+		if rfq.save
 			redirect_to rfq_success_path
 		else
-			flash[:alert] = "There was an error. Please contact support."
+			flash[:alert] = "There was an error in creating your request. Please try again!"
 			redirect_to request.referrer
 		end
 	end
