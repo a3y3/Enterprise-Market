@@ -9,10 +9,12 @@
 					<input type="text" id="commodities-input-rfq-new" list= "commodities-datalist-rfq-new" autocomplete= "off" placeholder="Search for available commodities">
 					<datalist id="commodities-datalist-rfq-new">
 					</datalist>
-					<%=f.hidden_field :commodity_type_id, id:"commodity_type_id", autocomplete: "off"%>
+					<%=f.hidden_field :commodity_type_id, id:"commodity_type_id"%>
 				</div>
 				<div class="form-group">
-					<%=f.text_field :description, placeholder: "Product description", class: "form-control", autocomplete: "off"%>
+					<input type="text" id="commodities-descriptions-input-rfq-new" placeholder="Product description" list="commodities-description-datalist-rfq-new">
+					<datalist id="commodities-description-datalist-rfq-new"></datalist>
+					<%=f.hidden_field :commodity_type_description_id, id: "commodity_type_description_id"%>
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-sm-5">
