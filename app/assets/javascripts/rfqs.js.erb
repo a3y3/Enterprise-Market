@@ -37,7 +37,7 @@ $(document).ready(function(){
 		    type: "GET",
 		    dataType: "json",
 		    data: {
-		      'input': input.val()
+		      'commodity': input.val()
 		    	},
 		    success: function (data, status, jqXHR) {
 					var jsonData = JSON.parse(data.data);
@@ -66,14 +66,15 @@ $(document).ready(function(){
 		    type: "GET",
 		    dataType: "json",
 		    data: {
-		      'commodity': input.val()
+		      'description': input.val(),
+		      'selected_commodity': $('#commodities-input-rfq-new').val()
 		    	},
 		    success: function (data, status, jqXHR) {
 					var jsonData = JSON.parse(data.data);
 		      jsonData.forEach(function(item){
 		      	var option = document.createElement("option");
-		      	option.setAttribute("value", item.name);
-		      	option.setAttribute("data-value", item.id);
+		      	option.setAttribute("value", item.description);
+		      	option.setAttribute("data-value", item.commodity_type_id);
 		      	option.setAttribute("class", "datalist-option-commodities");
 		      	dataList.appendChild(option);
 		      });

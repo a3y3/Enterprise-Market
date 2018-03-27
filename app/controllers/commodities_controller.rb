@@ -8,7 +8,10 @@ class CommoditiesController < ApplicationController
 		end
 		if(params[:description].present?)
 			input = params[:description]
-			descriptions = CommodityTypeDescription.where()
+			commodity = params[:selected_commodity]
+			commodity = CommodityType.find_by(name: commodity)
+			descriptions = commodity.commodity_type_descriptions
+			render json: {data: descriptions.to_json}, status: 200
 		end
 	end
 end
