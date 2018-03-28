@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Admin Panels</title>
+		<%= csrf_meta_tags %>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body class="<%= controller_name %> <%= action_name %>">
+		<div class="boxed" style="min-height: 100vh;">
+			<div id="site-header">		  
+					<header id="header" class="header clearfix"> 
+						<div class="header-wrap clearfix">
+							<div class="container">
+								<div class="row">
+									<div class="flat-wrapper">
+										<div id="logo" class="logo">
+											<a href="/">
+												<%=image_tag "images/logo.png"%>
+											</a>
+										</div><!-- /.logo -->
+										<div class="btn-menu">
+											<span></span>
+										</div><!-- //mobile menu button -->
+								   
+										<div class="nav-wrap">                                
+											<!-- /.mainnav -->  
+										<nav id="mainnav" class="mainnav">
+												<div class="menu-extra">
+													<ul>
+														<li class="shopping-cart">
+															<a href="#">
+																<i class="icon-user icons"></i>
+															</a>
+															<div class="subcart">
+																<div class="widget_shopping_cart_content">
+																	<div class="group-btn">
+																		<%=link_to destroy_user_session_path, method: :delete, class: "button bg-scheme3 style1" do%>
+																			Logout
+																		<%end%>
+																	</div>
+																</div>
+															</div>
+														</li>
+													</ul>
+												</div><!-- /.menu-extra -->                              
+											</nav></div><!-- /.nav-wrap -->
+									</div><!-- /.flat-wrapper -->
+								</div><!-- /.row -->
+							</div><!-- /.container -->             
+						</div><!-- /.header-inner --> 
+					</header><!-- /.header -->
+			</div>
+			<% if notice %>
+			  <div class="alert alert-success" role="alert">
+				<button class="close" data-dismiss="alert"></button>
+				<strong>Success: </strong><%= notice %>
+			  </div>
+			<% end %>
+			<% if alert %>
+			  <% if alert.length > 0 %>
+				<div class="alert alert-danger" role="alert">
+				  <button class="close" data-dismiss="alert"></button>
+				  <strong>Alert: </strong><%= alert %>
+				</div>
+			  <%end%>
+			<% end %>
+			<%=yield%>
+			<a class="go-top">            
+			</a>
+		</div>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload',  'data-turbolinks-eval': "false"  %>
+	</body>
+</html>
