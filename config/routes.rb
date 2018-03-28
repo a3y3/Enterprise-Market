@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :rfqs, :except => [:show]
-  get 'rfq/success' => 'rfq#success', as: 'rfq_success'
+  get 'rfqs/success' => 'rfqs#success', as: 'rfq_success'
 
   get 'commodities/search' => 'commodities#search', as: 'commodities_search'
 

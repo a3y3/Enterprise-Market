@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327104820) do
+ActiveRecord::Schema.define(version: 20180328110111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20180327104820) do
   create_table "rfqs", force: :cascade do |t|
     t.integer "commodity_type_id", null: false
     t.integer "quantity", null: false
-    t.string "uom", null: false
     t.integer "pincode", null: false
     t.boolean "pending", null: false
-    t.integer "mobile_number", null: false
+    t.bigint "mobile_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "commodity_type_description_id", null: false
+    t.integer "commodity_type_uom_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

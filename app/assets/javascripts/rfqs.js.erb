@@ -4,14 +4,19 @@ $(document).ready(function(){
 			var input_term = $("#commodities-input-rfq-new").val();
 			var option = $(".datalist-option-commodities[value='"+ input_term + "']");
 
+			if(input_term.length == 0){
+				e.preventDefault();
+				return false;
+			}
 			if(option.length != 0){
 				$("#commodity_type_id").attr("value", option.data("value"));
 			}
 			else{
 				alert("We don't provide the commodity you searched for, yet!");
 				e.preventDefault();
+				return false;
 			}
-			//End check for commodities-search
+			//End validation for commodities-search
 
 			var input_term = $("#commodities-descriptions-input-rfq-new").val();
 			var option = $(".datalist-option-description[value='"+ input_term + "']");
@@ -23,66 +28,88 @@ $(document).ready(function(){
 				alert("Invalid product description!");
 				e.preventDefault();
 			}
-			//End check for commodities-description
+			//End validation for commodities-description
 		});
-		$("#commodities-input-rfq-new").on("keyup", function(){
+		$("#commodities-input-rfq-new").on("keypress", function(e){
 			//remove all existing children of datalist
-			var dataList = document.getElementById("commodities-datalist-rfq-new");
-			var input = $(this);
-			while(dataList.lastChild){
-				dataList.removeChild(dataList.lastChild);
+			var charTyped = String.fromCharCode(e.which);
+			if (/[a-z\d]/i.test(charTyped)) {
+				var dataList = document.getElementById("commodities-datalist-rfq-new");
+				var input = $(this);
+				while(dataList.lastChild){
+					dataList.removeChild(dataList.lastChild);
+				}
+				if(input.val()){
+					$.ajax({
+				    url: "/commodities/search",
+				    type: "GET",
+				    dataType: "json",
+				    data: {
+				      'commodity': input.val()
+				    	},
+				    success: function (data, status, jqXHR) {
+							var jsonData = JSON.parse(data.data);
+				      jsonData.forEach(function(item){
+				      	var option = document.createElement("option");
+				      	option.setAttribute("value", item.name);
+				      	option.setAttribute("data-value", item.id);
+				      	option.setAttribute("class", "datalist-option-commodities");
+				      	dataList.appendChild(option);
+				      });
+				    },
+				    error: function (jqXHR, status, err) {
+				      console.log("Error" + err);
+				    }
+				  });
+				}
 			}
-			$.ajax({
-		    url: "/commodities/search",
-		    type: "GET",
-		    dataType: "json",
-		    data: {
-		      'commodity': input.val()
-		    	},
-		    success: function (data, status, jqXHR) {
-					var jsonData = JSON.parse(data.data);
-		      jsonData.forEach(function(item){
-		      	var option = document.createElement("option");
-		      	option.setAttribute("value", item.name);
-		      	option.setAttribute("data-value", item.id);
-		      	option.setAttribute("class", "datalist-option-commodities");
-		      	dataList.appendChild(option);
-		      });
-		    },
-		    error: function (jqXHR, status, err) {
-		      console.log("Error" + err);
-		    }
-		  });
 		});
-		$("#commodities-descriptions-input-rfq-new").on("keyup", function(){
-			//remove all existing children of datalist
-			var dataList = document.getElementById("commodities-description-datalist-rfq-new");
-			var input = $(this);
-			while(dataList.lastChild){
-				dataList.removeChild(dataList.lastChild);
+		$("#commodities-descriptions-input-rfq-new").on("keypress", function(e){
+			//remove all existing children of datalist, and load description via AJAX
+			var charTyped = String.fromCharCode(e.which);
+			if (/[a-z\d]/i.test(charTyped)) {
+				var dataList = document.getElementById("commodities-description-datalist-rfq-new");
+				var selectUom = document.getElementById("select-uom-rfqs-new");
+				var input = $(this);
+				while(dataList.lastChild){
+					dataList.removeChild(dataList.lastChild);
+				}
+				while($("#select-uom-rfqs-new").children().length !=1){
+					selectUom.removeChild(selectUom.lastChild);
+				}
+				if(input.val()){
+					$.ajax({
+				    url: "/commodities/search",
+				    type: "GET",
+				    dataType: "json",
+				    data: {
+				      'description': input.val(),
+				      'selected_commodity': $('#commodities-input-rfq-new').val()
+				    	},
+				    success: function (data, status, jqXHR) {
+							var jsonData = JSON.parse(data.data);
+				      jsonData.forEach(function(item){
+				      	var option = document.createElement("option");
+				      	option.setAttribute("value", item.description);
+				      	option.setAttribute("data-value", item.commodity_type_id);
+				      	option.setAttribute("class", "datalist-option-description");
+				      	dataList.appendChild(option);
+				      });
+				      var jsonUoms = JSON.parse(data.uoms);
+				      jsonUoms.forEach(function(item){
+				      	var optionForSelect = document.createElement("option");
+				      	optionForSelect.setAttribute("value", item.commodity_type_id);
+				      	optionForSelect.innerHTML = item.uom;
+				      	var select = document.getElementById('select-uom-rfqs-new');
+				      	select.appendChild(optionForSelect);
+				      });
+				    },
+				    error: function (jqXHR, status, err) {
+				      console.log("Error" + err);
+				    }
+				  });
+				}
 			}
-			$.ajax({
-		    url: "/commodities/search",
-		    type: "GET",
-		    dataType: "json",
-		    data: {
-		      'description': input.val(),
-		      'selected_commodity': $('#commodities-input-rfq-new').val()
-		    	},
-		    success: function (data, status, jqXHR) {
-					var jsonData = JSON.parse(data.data);
-		      jsonData.forEach(function(item){
-		      	var option = document.createElement("option");
-		      	option.setAttribute("value", item.description);
-		      	option.setAttribute("data-value", item.commodity_type_id);
-		      	option.setAttribute("class", "datalist-option-commodities");
-		      	dataList.appendChild(option);
-		      });
-		    },
-		    error: function (jqXHR, status, err) {
-		      console.log("Error" + err);
-		    }
-		  });
 		});
 	}
 });

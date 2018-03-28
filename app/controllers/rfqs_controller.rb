@@ -13,10 +13,10 @@ class RfqsController < ApplicationController
 	end
 	private
 	def rfq_params
-		params.require(:rfq).permit(:commodity_type_id,
-																:description, 
+		params.require(:rfqs).permit(:commodity_type_id,
+																:commodity_type_description_id, 
 																:quantity,
-																:uom,
+																:commodity_type_uom_id,
 																:pincode,
 																:mobile_number).merge(:pending => true)
 

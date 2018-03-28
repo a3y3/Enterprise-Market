@@ -2,7 +2,7 @@
 	<h2>
 		Get a Quote
 	</h2>
-	<%=form_for :rfqs do |f|%>
+	<%=form_for :rfqs, url: rfqs_path do |f|%>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
@@ -24,10 +24,7 @@
 					</div>
 					<div class="col-xs-6 col-sm-2">
 						<div class="form-group">
-							<select class="form-control" style="height: 50px; background-color: rgba(0, 0, 0, 0.05)">
-								<option disabled="disabled" selected="selected">UOM</option>
-								<option>EOM</option>
-							</select>
+							<%=f.select :commodity_type_uom_id,["UOM"], {:disabled => "UOM", :selected => "UOM"}, {:id => "select-uom-rfqs-new", style: "height: 50px; background-color: rgba(0, 0, 0, 0.05)", class: "form-control"}%>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-5">
