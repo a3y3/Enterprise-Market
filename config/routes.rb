@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'commodities/search' => 'commodities#search', as: 'commodities_search'
 
-  get '/admin/index' => 'admins#index'
+  get '/admin/index' => 'admin#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'

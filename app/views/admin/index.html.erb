@@ -1,0 +1,46 @@
+<div class="container margin-vertical-30px">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="text-center">
+					Commodity
+				</th>
+				<th class="text-center">
+					Commodity Description
+				</th>
+				<th class="text-center">
+					UOM
+				</th>
+				<th class="text-center">
+					Requested Quantity
+				</th>
+				<th class="text-center">
+					Available Quantity
+				</th>
+				<th class="text-center">
+					Number
+				</th>
+				<th class="text-center">
+					Pincode
+				</th>
+				<th class="text-center">
+					Pending?
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@request_for_quotes.each do |rfq|%>
+				<tr>
+					<td class="text-center"><%=rfq.commodity_type.name%></td>
+					<td class="text-center"><%=rfq.commodity_type_description.description%></td>
+					<td class="text-center"><%=rfq.commodity_type_uom.uom%></td>
+					<td class="text-center"><%=rfq.quantity%></td>
+					<td class="text-center"><%=rfq.commodity_type.available_quantity%></td>
+					<td class="text-center"><%=rfq.mobile_number%></td>
+					<td class="text-center"><%=rfq.pincode%></td>
+					<td class="text-center"><%if rfq.pending == true%>✓<%else%>✗<%end%></td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>
