@@ -33,9 +33,9 @@
 		</thead>
 		<tbody>
 			<%@request_for_quotes.each do |rfq|%>
-				<tr>
-					<td class="text-center"><%=rfq.commodity_type.name%></td>
-					<td class="text-center"><%=rfq.commodity_type_description.description%></td>
+				<tr class="clickable-row" data-id="<%=rfq.id%>">
+					<td class="text-center"><a href="/admin/rfq/commodity/<%=rfq.commodity_type.id%>"><%=rfq.commodity_type.name%></a></td>
+					<td class="text-center"><a href="/admin/rfq/description/<%=rfq.commodity_type_description.id%>"><%=rfq.commodity_type_description.description%></a></td>
 					<td class="text-center"><%=rfq.commodity_type_uom.uom%></td>
 					<td class="text-center"><%=rfq.quantity%></td>
 					<td class="text-center"><%=rfq.commodity_type.available_quantity%></td>

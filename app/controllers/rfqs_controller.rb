@@ -11,6 +11,11 @@ class RfqsController < ApplicationController
 			redirect_to request.referrer
 		end
 	end
+	def destroy
+		rfq = Rfq.find(params[:id])
+		rfq.destroy
+		redirect_to request.referrer
+	end
 	private
 	def rfq_params
 		params.require(:rfqs).permit(:commodity_type_id,

@@ -98,7 +98,7 @@ $(document).ready(function(){
 				      var jsonUoms = JSON.parse(data.uoms);
 				      jsonUoms.forEach(function(item){
 				      	var optionForSelect = document.createElement("option");
-				      	optionForSelect.setAttribute("value", item.commodity_type_id);
+				      	optionForSelect.setAttribute("value", item.id);
 				      	optionForSelect.innerHTML = item.uom;
 				      	var select = document.getElementById('select-uom-rfqs-new');
 				      	select.appendChild(optionForSelect);

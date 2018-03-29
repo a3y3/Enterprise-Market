@@ -7,4 +7,13 @@ class AdminController < ApplicationController
 	def rfq_pending
 		@request_for_quotes = Rfq.where(pending: true)
 	end
+	def rfq_show
+		@rfq = Rfq.find(params[:id])
+	end
+	def rfq_commodity
+		@request_for_quotes = Rfq.where(commodity_type_id: params[:id])
+	end
+	def rfq_description
+		@request_for_quotes = Rfq.where(commodity_type_description_id: params[:id])
+	end
 end
