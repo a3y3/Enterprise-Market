@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {                                                    
+    sessions: 'users/sessions'                                                         
+	}  
 
   get 'welcome/index'
 
@@ -8,8 +10,9 @@ Rails.application.routes.draw do
 
   get 'commodities/search' => 'commodities#search', as: 'commodities_search'
 
-  get '/admin/index' => 'admin#index'
+  get '/admin/rfq/all' => 'admin#rfq_all'
+  get '/admin/rfq/pending' => 'admin#rfq_pending'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
   root 'welcome#index'
 end

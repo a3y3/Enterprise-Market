@@ -1,5 +1,8 @@
 <div class="container margin-vertical-30px">
-	<table class="table">
+	<div class="toggle-pending">
+		<a href="/admin/rfq/all">View all RFQs</a>
+	</div>
+	<table class="table table-responsive">
 		<thead>
 			<tr>
 				<th class="text-center">
@@ -24,7 +27,7 @@
 					Pincode
 				</th>
 				<th class="text-center">
-					Pending?
+					Actions
 				</th>
 			</tr>
 		</thead>
@@ -38,7 +41,7 @@
 					<td class="text-center"><%=rfq.commodity_type.available_quantity%></td>
 					<td class="text-center"><%=rfq.mobile_number%></td>
 					<td class="text-center"><%=rfq.pincode%></td>
-					<td class="text-center"><%if rfq.pending == true%>✓<%else%>✗<%end%></td>
+					<td class="text-center">Delete</td>
 				</tr>
 			<%end%>
 		</tbody>
